@@ -129,6 +129,15 @@ Kung may conflict pa rin, baguhin ang `WEB_PORT` / `API_PORT` sa `.env` file.
 
 Premium black backgrounds · Modern pink accents · Glassmorphism · Neon pink highlights
 
+## Deploy — GitHub → Netlify
+
+1. Import [corelogicweblab-dev/sansonlawfirm](https://github.com/corelogicweblab-dev/sansonlawfirm) on [Netlify](https://app.netlify.com/)
+2. Build settings are in `netlify.toml` (no manual base directory needed)
+3. Set environment variables: `NEXT_PUBLIC_API_URL`, `NEXT_PUBLIC_WS_URL`
+4. Deploy — each push to `main` auto-deploys
+
+Full guide: [docs/NETLIFY.md](docs/NETLIFY.md)
+
 ## License
 
 Proprietary — SANSON Law Firm

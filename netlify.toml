@@ -1,0 +1,26 @@
+# SANSON Legal OS — Netlify deployment (GitHub → Netlify)
+# Repo: https://github.com/corelogicweblab-dev/sansonlawfirm
+
+[build]
+  # Monorepo: install from root so @sanson/* workspace packages resolve
+  command = "npm ci && npm run build --workspace=@sanson/web"
+  # publish directory: auto-configured by @netlify/plugin-nextjs
+
+[build.environment]
+  NODE_VERSION = "22"
+  NPM_FLAGS = "--include=dev"
+  # Set in Netlify UI → Site settings → Environment variables:
+  # NEXT_PUBLIC_API_URL = https://your-api.example.com
+  # NEXT_PUBLIC_WS_URL = wss://your-api.example.com
+  # NEXT_PUBLIC_APP_NAME = SANSON Legal OS
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+# Next.js App Router — let the plugin handle routing
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
