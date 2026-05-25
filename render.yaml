@@ -16,6 +16,10 @@ services:
         value: "3.12.8"
       - key: DATABASE_URL
         sync: false
+      - key: DATABASE_SSL
+        value: "true"
+      - key: SUPABASE_URL
+        value: "https://zoauzxvkjthgokjurkze.supabase.co"
       - key: REDIS_URL
         sync: false
       - key: JWT_SECRET

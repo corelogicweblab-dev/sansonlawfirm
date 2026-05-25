@@ -6,7 +6,9 @@
 
 | Variable | Description |
 |----------|-------------|
-| `DATABASE_URL` | PostgreSQL from [Render Postgres](https://render.com/docs/databases) or external |
+| `DATABASE_URL` | Supabase URI — see [SUPABASE.md](./SUPABASE.md) |
+| `DATABASE_SSL` | `true` (required for Supabase) |
+| `SUPABASE_URL` | `https://zoauzxvkjthgokjurkze.supabase.co` |
 | `JWT_SECRET` | Long random string (32+ chars) |
 | `CORS_ORIGINS` | Comma-separated frontend URLs |
 

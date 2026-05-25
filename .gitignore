@@ -64,3 +64,5 @@ qdrant_data/
 
 # Uploads (local dev)
 uploads/
+
+/generated/prisma

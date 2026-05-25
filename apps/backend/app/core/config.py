@@ -18,6 +18,10 @@ class Settings(BaseSettings):
     debug: bool = False
 
     database_url: str = "postgresql+asyncpg://sanson:sanson_dev_password@localhost:5433/sanson_legal"
+    database_ssl: bool = False
+    supabase_url: str = "https://zoauzxvkjthgokjurkze.supabase.co"
+    supabase_anon_key: str = ""
+    supabase_service_role_key: str = ""
     redis_url: str = "redis://localhost:6380/0"
 
     jwt_secret: str = "change-me-to-a-secure-random-string-min-32-chars"
@@ -63,6 +67,22 @@ class Settings(BaseSettings):
     @property
     def cors_origins_list(self) -> List[str]:
         return [o.strip() for o in self.cors_origins.split(",") if o.strip()]
+
+    @property
+    def async_database_url(self) -> str:
+        """Normalize Postgres URI for SQLAlchemy asyncpg (incl. Supabase)."""
+        url = self.database_url.strip()
+        if url.startswith("postgres://"):
+            url = "postgresql+asyncpg://" + url[len("postgres://") :]
+        elif url.startswith("postgresql://") and "+asyncpg" not in url:
+            url = "postgresql+asyncpg://" + url[len("postgresql://") :]
+        return url
+
+    @property
+    def requires_database_ssl(self) -> bool:
+        if self.database_ssl:
+            return True
+        return "supabase.co" in self.async_database_url
 
 
 @lru_cache
