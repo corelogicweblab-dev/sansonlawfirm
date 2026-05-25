@@ -137,14 +137,9 @@ Premium black backgrounds · Modern pink accents · Glassmorphism · Neon pink h
 
 ## Deploy
 
-**API — Render:** [docs/RENDER.md](docs/RENDER.md) · uses `render.yaml`  
-**Database — Supabase:** [docs/SUPABASE.md](docs/SUPABASE.md)  
-**Web — Netlify:** [docs/NETLIFY.md](docs/NETLIFY.md) · points to Render API via `netlify.toml`
+**[DEPLOYMENT.md](DEPLOYMENT.md)** — Render (Docker API) · Netlify (Web) · Supabase (DB)
 
-1. Supabase: run `infrastructure/docker/init.sql` in SQL Editor
-2. Render: set `DATABASE_URL` (Supabase URI) + `JWT_SECRET` + `DATABASE_SSL=true`
-2. Netlify: import repo, redeploy after push (API URL in `netlify.toml`)
-3. On Render, set `CORS_ORIGINS` to include your Netlify URL
+Render uses **Docker** (`backend/Dockerfile`). Never run `npm` on Render.
 
 ## License
 

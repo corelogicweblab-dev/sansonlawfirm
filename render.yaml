@@ -1,20 +1,22 @@
-# Render Blueprint — Python API (NOT Node/npm)
-# Dashboard: Root Directory = backend
-# Build Command = pip install -r requirements.txt  (NOT npm run build)
+# =============================================================================
+# RENDER = API ONLY (Docker). Do NOT deploy Next.js here — use Netlify for web.
+# =============================================================================
+# In Render Dashboard: delete old Node/static services; use Blueprint OR:
+#   Environment: Docker
+#   Dockerfile Path: backend/Dockerfile
+#   Docker Context: backend
+# =============================================================================
 
 services:
   - type: web
     name: sansonlawfirm
-    runtime: python
+    runtime: docker
     region: singapore
     plan: free
-    rootDir: backend
-    buildCommand: pip install -r requirements.txt
-    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    dockerfilePath: backend/Dockerfile
+    dockerContext: backend
     healthCheckPath: /api/v1/health
     envVars:
-      - key: PYTHON_VERSION
-        value: "3.12.8"
       - key: DATABASE_URL
         sync: false
       - key: DATABASE_SSL
@@ -25,3 +27,5 @@ services:
         generateValue: true
       - key: CORS_ORIGINS
         value: "https://sansonlawfirm.netlify.app,http://localhost:3100"
+      - key: OPENAI_API_KEY
+        sync: false

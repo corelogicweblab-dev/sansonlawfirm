@@ -1,4 +1,4 @@
-# Netlify — builds ONLY apps/web (Next.js)
+# NETLIFY = WEB ONLY (Next.js). API is on Render.
 [build]
   base = "apps/web"
   installCommand = "cd ../.. && npm ci"

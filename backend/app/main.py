@@ -1,3 +1,6 @@
+import os
+from contextlib import asynccontextmanager
+
 import structlog
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
@@ -20,7 +23,16 @@ structlog.configure(
 settings = get_settings()
 limiter = Limiter(key_func=get_remote_address, default_limits=[f"{settings.rate_limit_per_minute}/minute"])
 
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    port = os.environ.get("PORT", "8100")
+    structlog.get_logger().info("sanson_api_starting", port=port, env=os.environ.get("RENDER", "local"))
+    yield
+
+
 app = FastAPI(
+    lifespan=lifespan,
     title=settings.app_name,
     version=settings.app_version,
     description="AI-powered Legal Operating System for SANSON Law Firm",
