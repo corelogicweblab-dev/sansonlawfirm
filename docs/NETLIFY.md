@@ -22,13 +22,15 @@ No need to set **Base directory** to `apps/web` — build runs from repo root fo
 
 In **Site configuration → Environment variables**, add:
 
-| Variable | Example | Notes |
-|----------|---------|--------|
-| `NEXT_PUBLIC_API_URL` | `https://api.sansonlaw.ph` | Your **production** FastAPI URL |
-| `NEXT_PUBLIC_WS_URL` | `wss://api.sansonlaw.ph` | WebSocket URL (same host, `wss://`) |
+| Variable | Value | Notes |
+|----------|-------|--------|
+| `NEXT_PUBLIC_API_URL` | `https://sansonlawfirm.onrender.com` | Set in `netlify.toml` |
+| `NEXT_PUBLIC_WS_URL` | `wss://sansonlawfirm.onrender.com` | Set in `netlify.toml` |
 | `NEXT_PUBLIC_APP_NAME` | `SANSON Legal OS` | Optional |
 
-> The **web app** deploys on Netlify. The **FastAPI backend** must be hosted separately (Railway, Render, Fly.io, VPS, etc.) and `NEXT_PUBLIC_API_URL` must point to it.
+> Already configured in `netlify.toml`. Override in Netlify UI if needed.
+
+**Production API:** https://sansonlawfirm.onrender.com
 
 ## 4. Deploy
 

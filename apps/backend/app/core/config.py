@@ -25,7 +25,10 @@ class Settings(BaseSettings):
     jwt_access_token_expire_minutes: int = 30
     jwt_refresh_token_expire_days: int = 7
 
-    cors_origins: str = "http://localhost:3100,http://127.0.0.1:3100,http://localhost:8081"
+    cors_origins: str = (
+        "http://localhost:3100,http://127.0.0.1:3100,"
+        "https://sansonlawfirm.netlify.app,https://sansonlawfirm.onrender.com"
+    )
 
     openai_api_key: str = ""
     openai_model: str = "gpt-4o-mini"

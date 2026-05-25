@@ -129,14 +129,21 @@ Kung may conflict pa rin, baguhin ang `WEB_PORT` / `API_PORT` sa `.env` file.
 
 Premium black backgrounds · Modern pink accents · Glassmorphism · Neon pink highlights
 
-## Deploy — GitHub → Netlify
+## Production URLs
 
-1. Import [corelogicweblab-dev/sansonlawfirm](https://github.com/corelogicweblab-dev/sansonlawfirm) on [Netlify](https://app.netlify.com/)
-2. Build settings are in `netlify.toml` (no manual base directory needed)
-3. Set environment variables: `NEXT_PUBLIC_API_URL`, `NEXT_PUBLIC_WS_URL`
-4. Deploy — each push to `main` auto-deploys
+| Service | URL |
+|---------|-----|
+| **API (Render)** | https://sansonlawfirm.onrender.com |
+| **Web (Netlify)** | Your Netlify site (e.g. `https://sansonlawfirm.netlify.app`) |
 
-Full guide: [docs/NETLIFY.md](docs/NETLIFY.md)
+## Deploy
+
+**API — Render:** [docs/RENDER.md](docs/RENDER.md) · uses `render.yaml`  
+**Web — Netlify:** [docs/NETLIFY.md](docs/NETLIFY.md) · points to Render API via `netlify.toml`
+
+1. Render: connect GitHub repo, set `DATABASE_URL` + `JWT_SECRET`
+2. Netlify: import repo, redeploy after push (API URL in `netlify.toml`)
+3. On Render, set `CORS_ORIGINS` to include your Netlify URL
 
 ## License
 
