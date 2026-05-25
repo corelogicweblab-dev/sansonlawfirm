@@ -1,14 +1,11 @@
-# SANSON Legal OS — Netlify (monorepo root build)
-# UI: CLEAR Build command + Publish directory. Package directory: apps/web (optional)
-# API: https://sansonlawfirm.onrender.com
-
+# Netlify — builds ONLY apps/web (Next.js)
 [build]
-  installCommand = "npm ci"
-  command = "npm run build:netlify"
+  base = "apps/web"
+  installCommand = "cd ../.. && npm ci"
+  command = "npm run build"
 
 [build.environment]
   NODE_VERSION = "22"
-  NPM_FLAGS = "--include=dev"
   NEXT_PUBLIC_API_URL = "https://sansonlawfirm.onrender.com"
   NEXT_PUBLIC_WS_URL = "wss://sansonlawfirm.onrender.com"
   NEXT_PUBLIC_APP_NAME = "SANSON Legal OS"
@@ -16,10 +13,3 @@
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
-
-[[headers]]
-  for = "/*"
-  [headers.values]
-    X-Frame-Options = "DENY"
-    X-Content-Type-Options = "nosniff"
-    Referrer-Policy = "strict-origin-when-cross-origin"

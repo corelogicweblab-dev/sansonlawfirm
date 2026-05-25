@@ -28,7 +28,7 @@ http://localhost:3100,https://sansonlawfirm.netlify.app,https://YOUR-NETLIFY-SIT
 
 1. Render Dashboard → **New** → **Blueprint** (or Web Service)
 2. Connect `corelogicweblab-dev/sansonlawfirm`
-3. Uses `render.yaml` — **Root Directory:** `apps/backend`
+3. Uses `render.yaml` — **Root Directory:** `backend`
 4. Add Postgres database and link `DATABASE_URL`
 
 ## Free tier note

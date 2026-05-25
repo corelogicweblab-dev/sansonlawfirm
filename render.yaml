@@ -1,14 +1,11 @@
-# Render — API service (monorepo: code is in apps/backend)
-# Dashboard Root Directory MUST be: apps/backend  (NOT "backend")
-# https://sansonlawfirm.onrender.com
-
+# Render API — root folder: backend/
 services:
   - type: web
     name: sansonlawfirm
     runtime: python
     region: singapore
     plan: free
-    rootDir: apps/backend
+    rootDir: backend
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /api/v1/health
@@ -21,11 +18,7 @@ services:
         value: "true"
       - key: SUPABASE_URL
         value: "https://zoauzxvkjthgokjurkze.supabase.co"
-      - key: REDIS_URL
-        sync: false
       - key: JWT_SECRET
         generateValue: true
       - key: CORS_ORIGINS
-        value: "http://localhost:3100,https://sansonlawfirm.netlify.app,https://sansonlawfirm.onrender.com"
-      - key: OPENAI_API_KEY
-        sync: false
+        value: "https://sansonlawfirm.netlify.app,http://localhost:3100"

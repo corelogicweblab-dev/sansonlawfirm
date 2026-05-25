@@ -1,49 +1,40 @@
-# Fix Render + Netlify Deploy Errors
+# Deploy Fix (structural — May 2026)
 
-## Render — `Root directory "backend" does not exist`
+## What changed in the repo
 
-**Cause:** Dashboard Root Directory is set to `backend` but code is in `apps/backend`.
-
-**Fix:**
-1. [Render Dashboard](https://dashboard.render.com/) → **sansonlawfirm** → **Settings**
-2. **Root Directory** → change to: `apps/backend`
-3. **Save** → **Manual Deploy**
-
-`render.yaml` already has `rootDir: apps/backend` — UI must match.
+| Before | After |
+|--------|--------|
+| `apps/backend` | **`backend/`** (Render expects this) |
+| `apps/mobile` in monorepo | **`mobile/`** (not deployed to Netlify) |
+| Netlify built wrong package | **`base = apps/web`** only |
 
 ---
 
-## Netlify — `turbo: command not found` / `@sanson/mobile`
+## Render
 
-**Cause:** Netlify UI overrides `netlify.toml` with wrong build command.
+**Root Directory:** `backend` (matches folder name now)
 
-**Fix:**
-1. [Netlify](https://app.netlify.com/) → your site → **Site configuration** → **Build & deploy**
-2. **Build settings** → **Edit settings**
-3. Set:
-   - **Base directory:** *(leave empty)*
-   - **Package directory:** `apps/web` *(if shown)*
-   - **Build command:** *(empty — use repo `netlify.toml`)*
-   - **Publish directory:** *(empty)*
-4. **Save** → **Deploy site** → **Clear cache and deploy**
+1. Render → **sansonlawfirm** → **Settings** → Root Directory = `backend`
+2. Environment: `DATABASE_URL`, `DATABASE_SSL=true`, `JWT_SECRET`
+3. **Manual Deploy**
 
-Correct build (from repo):
-
-```bash
-npm ci
-npm run build:netlify
-```
-
-This builds **`@sanson/web`** only (not mobile).
+Test: https://sansonlawfirm.onrender.com/api/v1/health
 
 ---
 
-## After both succeed
+## Netlify
 
-| Service | URL |
-|---------|-----|
-| Web | Your `*.netlify.app` URL |
-| API | https://sansonlawfirm.onrender.com |
-| DB | https://zoauzxvkjthgokjurkze.supabase.co |
+1. **Site configuration** → **Build & deploy** → **Build settings**
+2. Click **Manage** or **Edit** → **Clear ALL overrides:**
+   - Base directory: **empty** (netlify.toml sets `apps/web`)
+   - Build command: **empty**
+   - Publish directory: **empty**
+3. **Deploys** → **Trigger deploy** → **Clear cache and deploy site**
 
-Render env: `DATABASE_URL`, `DATABASE_SSL=true`, `JWT_SECRET`
+Test: open your `*.netlify.app` URL
+
+---
+
+## Still failing?
+
+Delete the Netlify site and re-import from GitHub (fresh settings), or send a screenshot of **Build settings** page.

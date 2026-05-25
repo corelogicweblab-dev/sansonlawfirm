@@ -65,7 +65,7 @@ services:
 
   backend:
     build:
-      context: ../../apps/backend
+      context: ../../backend
       dockerfile: Dockerfile
     container_name: sanson-backend
     restart: unless-stopped
@@ -84,7 +84,7 @@ services:
       redis:
         condition: service_healthy
     volumes:
-      - ../../apps/backend:/app
+      - ../../backend:/app
     command: uvicorn app.main:app --host 0.0.0.0 --port 8100 --reload
 
   web:

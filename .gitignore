@@ -49,8 +49,8 @@ htmlcov/
 alembic/versions/*.pyc
 
 # Mobile
-apps/mobile/.expo/
-apps/mobile/dist/
+mobile/.expo/
+mobile/dist/
 *.jks
 *.p8
 *.p12

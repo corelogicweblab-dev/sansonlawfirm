@@ -4,26 +4,19 @@
   "private": true,
   "description": "SANSON Law Firm — AI-powered Legal Operating System",
   "workspaces": [
-    "apps/*",
-    "packages/*"
+    "apps/web",
+    "packages/*",
+    "backend"
   ],
   "scripts": {
-    "dev": "turbo run dev",
+    "dev": "npm run dev:web",
     "dev:web": "npm run dev --workspace=@sanson/web",
     "dev:backend": "npm run dev --workspace=@sanson/backend",
     "build": "npm run build --workspace=@sanson/web",
     "build:web": "npm run build --workspace=@sanson/web",
-    "build:netlify": "npm run build --workspace=@sanson/web",
-    "lint": "turbo run lint",
-    "typecheck": "turbo run typecheck",
+    "lint": "npm run lint --workspace=@sanson/web --if-present",
     "docker:up": "docker compose -f infrastructure/docker/docker-compose.yml up -d",
-    "docker:down": "docker compose -f infrastructure/docker/docker-compose.yml down",
-    "db:migrate": "npm run migrate --workspace=@sanson/backend"
-  },
-  "devDependencies": {
-    "prisma": "^7.8.0",
-    "turbo": "^2.5.4",
-    "typescript": "^5.8.3"
+    "docker:down": "docker compose -f infrastructure/docker/docker-compose.yml down"
   },
   "engines": {
     "node": ">=20.0.0"

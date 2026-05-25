@@ -5,10 +5,9 @@ AI-powered centralized enterprise legal management ecosystem for **SANSON Law Fi
 ## Architecture
 
 ```
-/apps
-  /web          → Next.js 16 + TypeScript + Tailwind (role dashboards)
-  /mobile       → Expo React Native (Phase 4)
-  /backend      → FastAPI + PostgreSQL + Redis + WebSockets
+/apps/web       → Next.js (Netlify)
+/backend        → FastAPI (Render)
+/mobile         → Expo (Phase 4)
 /packages
   /types        → Shared TypeScript types
   /shared       → Shared constants & helpers
@@ -58,12 +57,11 @@ Starts: PostgreSQL, Redis, Qdrant, MinIO
 > **Requires Python 3.12** (recommended). Python 3.14 may fail on some native dependencies — use Docker or pyenv for 3.12.
 
 ```bash
-cd apps/backend
+cd backend
 python3.12 -m venv .venv    # use Python 3.12
 .venv\Scripts\activate        # Windows
 pip install -r requirements.txt
-npm run dev                 # from apps/backend, or:
-uvicorn app.main:app --reload --port 8000
+uvicorn app.main:app --reload --port 8100
 ```
 
 API docs: http://localhost:8100/api/v1/docs
