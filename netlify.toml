@@ -1,10 +1,10 @@
-# SANSON Legal OS — Netlify deploys apps/web ONLY (not apps/mobile)
+# SANSON Legal OS — Netlify (monorepo root build)
+# UI: CLEAR Build command + Publish directory. Package directory: apps/web (optional)
 # API: https://sansonlawfirm.onrender.com
 
 [build]
-  # Critical: point Netlify at the Next.js app (fixes apps/mobile/dist error)
-  base = "apps/web"
-  command = "cd ../.. && npm ci && npm run build --workspace=@sanson/web"
+  installCommand = "npm ci"
+  command = "npm run build:netlify"
 
 [build.environment]
   NODE_VERSION = "22"
@@ -12,6 +12,7 @@
   NEXT_PUBLIC_API_URL = "https://sansonlawfirm.onrender.com"
   NEXT_PUBLIC_WS_URL = "wss://sansonlawfirm.onrender.com"
   NEXT_PUBLIC_APP_NAME = "SANSON Legal OS"
+  NEXT_PUBLIC_SUPABASE_URL = "https://zoauzxvkjthgokjurkze.supabase.co"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"

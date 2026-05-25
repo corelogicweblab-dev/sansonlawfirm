@@ -1,2 +1,12 @@
-# Next.js app — parent repo netlify.toml sets base = "apps/web"
-# Do not set Base directory to apps/mobile in Netlify UI
+# Used when Netlify "Package directory" = apps/web
+[build]
+  installCommand = "cd ../.. && npm ci"
+  command = "cd ../.. && npm run build --workspace=@sanson/web"
+
+[build.environment]
+  NEXT_PUBLIC_API_URL = "https://sansonlawfirm.onrender.com"
+  NEXT_PUBLIC_WS_URL = "wss://sansonlawfirm.onrender.com"
+  NEXT_PUBLIC_SUPABASE_URL = "https://zoauzxvkjthgokjurkze.supabase.co"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"

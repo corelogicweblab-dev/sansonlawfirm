@@ -1,4 +1,5 @@
-# Render Blueprint — SANSON Legal OS API
+# Render — API service (monorepo: code is in apps/backend)
+# Dashboard Root Directory MUST be: apps/backend  (NOT "backend")
 # https://sansonlawfirm.onrender.com
 
 services:
