@@ -1,0 +1,2 @@
+# Next.js app — parent repo netlify.toml sets base = "apps/web"
+# Do not set Base directory to apps/mobile in Netlify UI

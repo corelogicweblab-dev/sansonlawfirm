@@ -1,8 +1,10 @@
-# SANSON Legal OS — Netlify (frontend) + Render (API)
+# SANSON Legal OS — Netlify deploys apps/web ONLY (not apps/mobile)
 # API: https://sansonlawfirm.onrender.com
 
 [build]
-  command = "npm ci && npm run build --workspace=@sanson/web"
+  # Critical: point Netlify at the Next.js app (fixes apps/mobile/dist error)
+  base = "apps/web"
+  command = "cd ../.. && npm ci && npm run build --workspace=@sanson/web"
 
 [build.environment]
   NODE_VERSION = "22"

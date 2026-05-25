@@ -11,7 +11,7 @@
     "dev": "turbo run dev",
     "dev:web": "npm run dev --workspace=@sanson/web",
     "dev:backend": "npm run dev --workspace=@sanson/backend",
-    "build": "turbo run build",
+    "build": "npm run build --workspace=@sanson/web",
     "build:web": "npm run build --workspace=@sanson/web",
     "lint": "turbo run lint",
     "typecheck": "turbo run typecheck",

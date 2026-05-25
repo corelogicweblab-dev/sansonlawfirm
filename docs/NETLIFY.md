@@ -16,7 +16,9 @@
 | Publish | Handled by `@netlify/plugin-nextjs` |
 | Node | 22 |
 
-No need to set **Base directory** to `apps/web` — build runs from repo root for npm workspaces.
+**Base directory** must be empty in Netlify UI (let `netlify.toml` set `base = "apps/web"`).
+
+If UI shows `apps/mobile`, change it to **blank** or `apps/web` — wrong base causes the `apps/mobile/dist` error.
 
 ## 3. Environment variables (required)
 

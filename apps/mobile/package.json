@@ -7,7 +7,7 @@
     "dev": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "build": "echo 'Mobile build — Phase 4'"
+    "build:expo": "echo 'Mobile build — Phase 4'"
   },
   "dependencies": {
     "@sanson/types": "*",
