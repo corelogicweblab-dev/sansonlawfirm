@@ -10,13 +10,23 @@
 
 ---
 
-## Render
+## Render (Python — NOT npm)
 
-**Root Directory:** `backend` (matches folder name now)
+Render failed because it ran `npm run build`. This API is **Python**.
 
-1. Render → **sansonlawfirm** → **Settings** → Root Directory = `backend`
+**Settings → Build & Deploy:**
+
+| Field | Value |
+|-------|--------|
+| **Root Directory** | `backend` |
+| **Runtime** | `Python 3` |
+| **Build Command** | `pip install -r requirements.txt` |
+| **Start Command** | `uvicorn app.main:app --host 0.0.0.0 --port $PORT` |
+
+Delete any `npm install` / `npm run build` from Build Command.
+
+1. Save → **Manual Deploy**
 2. Environment: `DATABASE_URL`, `DATABASE_SSL=true`, `JWT_SECRET`
-3. **Manual Deploy**
 
 Test: https://sansonlawfirm.onrender.com/api/v1/health
 
